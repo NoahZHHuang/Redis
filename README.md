@@ -149,7 +149,96 @@ blpop key1 [key2 ...]  timeout
 brpop key1 [key2 ...] timeout	
 -- refer to blpop	
 	
-	
+sadd key element1 [element2 ...]  
+-- i.e. "sadd myset a b c d e" , add element "a", "b", "c", "d", "e" in the set "myset"
+-- return the elements count that are successfully added
+
+srem key element1 [element2]
+-- remeove the elements in a set, return the elements count that are successfully removed
+
+scard key
+-- show how many elements are in the set
+
+sismember key element
+-- judge if the element is in the set, if yes return 1 else return 0
+
+srandommember key [count]
+-- return one or more elements in a set randomly
+
+smembers key
+-- return all the elements in a set
+
+spop key
+--pop up one random element in a set
+
+sinter key1 key2
+--calculate the intersection of key1 and key2
+
+sinterstore newKey key1 key2
+--calculate the intersection of key1 and key2 and store the result int newKey
+
+sunion key1 key2
+--refer to sinter, but it is a union set
+
+sunionstore newKey key1 key2
+--refer to sinterstore, but it is a union set
+
+
+sdiff key1 key2
+--refer to sinter, but it is a difference set
+
+sdiff newKey key1 key2
+--refer to sinterstore, but it is a difference set
+
+zadd key score1 member1 [score2 member2 ...] [nx|xx]
+--add element(s) in a zset.
+
+zrem key member
+--remove the member from a zset
+
+zcard key
+--show how many elements are in a zset
+
+zscore key member
+--return the sore of the member 
+
+zrank|zrevrank key member 
+--return the rank or the reverse rank of the member, order by score(asc|desc)
+
+zincrby key increment member
+-- increase the score of a member by delta
+
+zrange | zrevrange key start end [withscores]
+-- return a range of zset,  particularly "zrange key 0 -1" will return all
+-- noticed , the start and end is the ranking of the element
+
+zrangebyscore | zrevrangebyscore key [(]min max[)] [withscores] 
+-- return a range of zset, the min and max are score, "(" and ")" means exclude the min and  max themselves
+-- also we can use -inf as min, or +inf as max to say we want the infinity
+
+zcount key min max
+-- count the member where their score are between min and max
+
+zremrangebyrank key start end
+--remove a range of elements in zset, start and end mean the ranking
+
+zremrangebyscore key min max
+--refer to zremrangebyrank, but min and max mean the score
+
+zinterstore destination key1 [key2 ...]  [weights weight1, weeight2 ... weightN] [aggregate sum |min |max]
+-- calculate the intersection of key1 [key2...], default the aggregate will be sum
+
+zuniostore destination key1 [key2 ...]  [weights weight1, weeight2 ... weightN] [aggregate sum |min |max]
+-- refer to zinterstore, but it is a union set
+
+
+
+
+
+
+
+
+
 
 
 
